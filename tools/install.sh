@@ -30,7 +30,7 @@ main() {
   fi
 
   if [ ! -n "$ZSH" ]; then
-    ZSH=~/.oh-my-zsh
+    ZSH=/opt/zsh/oh-my-zsh
   fi
 
   if [ -d "$ZSH" ]; then
@@ -66,17 +66,17 @@ main() {
 
 
   printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
-  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
-    printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
-    mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
+  if [ -f /opt/zsh/.zshrc ] || [ -h /opt/zsh/.zshrc ]; then
+    printf "${YELLOW}Found /opt/zsh/.zshrc.${NORMAL} ${GREEN}Backing up to /opt/zsh/.zshrc.pre-oh-my-zsh${NORMAL}\n";
+    mv /opt/zsh/.zshrc /opt/zsh/.zshrc.pre-oh-my-zsh;
   fi
 
   printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-  cp "$ZSH"/templates/zshrc.zsh-template ~/.zshrc
+  cp "$ZSH"/templates/zshrc.zsh-template /opt/zsh/.zshrc
   sed "/^export ZSH=/ c\\
   export ZSH=\"$ZSH\"
-  " ~/.zshrc > ~/.zshrc-omztemp
-  mv -f ~/.zshrc-omztemp ~/.zshrc
+  " /opt/zsh/.zshrc > /opt/zsh/.zshrc-omztemp
+  mv -f /opt/zsh/.zshrc-omztemp /opt/zsh/.zshrc
 
   # If this user's login shell is not already "zsh", attempt to switch.
   TEST_CURRENT_SHELL=$(basename "$SHELL")
