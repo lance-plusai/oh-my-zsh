@@ -5,8 +5,8 @@ if [[ -z "$ZSH_CACHE_DIR" ]]; then
 fi
 
 # Migrate .zsh-update file to $ZSH_CACHE_DIR
-if [ -f ~/.zsh-update ] && [ ! -f ${ZSH_CACHE_DIR}/.zsh-update ]; then
-    mv ~/.zsh-update ${ZSH_CACHE_DIR}/.zsh-update
+if [ -f /opt/zsh/.zsh-update ] && [ ! -f ${ZSH_CACHE_DIR}/.zsh-update ]; then
+    mv /opt/zsh/.zsh-update ${ZSH_CACHE_DIR}/.zsh-update
 fi
 
 # Check for updates on initial load...
