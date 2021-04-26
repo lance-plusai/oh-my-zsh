@@ -41,8 +41,8 @@ set -e
 custom_zsh=${ZSH:+yes}
 
 # Default settings
-ZSH=${ZSH:-~/.oh-my-zsh}
-REPO=${REPO:-ohmyzsh/ohmyzsh}
+ZSH=${ZSH:-/opt/zsh/oh-my-zsh}
+REPO=${REPO:-lance-plusai/oh-my-zsh}
 REMOTE=${REMOTE:-https://github.com/${REPO}.git}
 BRANCH=${BRANCH:-master}
 
@@ -129,11 +129,11 @@ setup_zshrc() {
   echo "${BLUE}Looking for an existing zsh config...${RESET}"
 
   # Must use this exact name so uninstall.sh can find it
-  OLD_ZSHRC=~/.zshrc.pre-oh-my-zsh
-  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
+  OLD_ZSHRC=/opt/zsh/.zshrc.pre-oh-my-zsh
+  if [ -f /opt/zsh/.zshrc ] || [ -h /opt/zsh/.zshrc ]; then
     # Skip this if the user doesn't want to replace an existing .zshrc
     if [ "$KEEP_ZSHRC" = yes ]; then
-      echo "${YELLOW}Found ~/.zshrc.${RESET} ${GREEN}Keeping...${RESET}"
+      echo "${YELLOW}Found /opt/zsh/.zshrc.${RESET} ${GREEN}Keeping...${RESET}"
       return
     fi
     if [ -e "$OLD_ZSHRC" ]; then
@@ -149,15 +149,15 @@ setup_zshrc() {
         "${GREEN}Backing up to ${OLD_OLD_ZSHRC}${RESET}"
     fi
     echo "${YELLOW}Found ~/.zshrc.${RESET} ${GREEN}Backing up to ${OLD_ZSHRC}${RESET}"
-    mv ~/.zshrc "$OLD_ZSHRC"
+    mv /opt/zsh/.zshrc "$OLD_ZSHRC"
   fi
 
-  echo "${GREEN}Using the Oh My Zsh template file and adding it to ~/.zshrc.${RESET}"
+  echo "${GREEN}Using the Oh My Zsh template file and adding it to /opt/zsh/.zshrc.${RESET}"
 
   sed "/^export ZSH=/ c\\
 export ZSH=\"$ZSH\"
-" "$ZSH/templates/zshrc.zsh-template" > ~/.zshrc-omztemp
-	mv -f ~/.zshrc-omztemp ~/.zshrc
+" "$ZSH/templates/zshrc.zsh-template" > /opt/zsh/.zshrc-omztemp
+	mv -f /opt/zsh/.zshrc-omztemp /opt/zsh/.zshrc
 
 	echo
 }
